@@ -18,6 +18,8 @@ function renderDogs(dogs) {
     allDogs.forEach(dog => {
         const img = document.createElement("img");
         img.src = dog;
+        img.style.width = "250px";
+        img.style.height = "250px";
         main.appendChild(img);
     });
 }
@@ -44,15 +46,25 @@ function breedColorChange (event) {
 }
 
 const breedDropdown = document.querySelector("#breed-dropdown");
-console.log(breedDropdown);
-// breedDropdown.addEventListener("change", filterBreeds);
+breedDropdown.addEventListener("change", filterBreeds);
 
 
 function filterBreeds(event) {
-    let allBreeds = document.querySelectorAll("#li");
-    let breedList = [...allBreeds];
-    let filteredOutBreeds = breedList.filter(dog => dog.firstChild.innerText.charAt(0) !== event.target.value)
+    const allBreeds = document.querySelectorAll("li");
+    const breedList = [...allBreeds];
+
+    let filteredOutBreeds = breedList.filter(dog => dog.firstChild.textContent.charAt(0) !== event.target.value)
     for (breed of filteredOutBreeds) {
         breed.style.display = "none";
     }
+
+    let filteredInBreeds = breedList.filter(dog => dog.firstChild.textContent.charAt(0) === event.target.value)
+    for (breed of filteredInBreeds) {
+        breed.style.display = "list-item";
+    }
+
+    if (event.target.value === "default") {
+    for (breed of breedList) {
+        breed.style.display = "list-item"; 
+    }};
 };
