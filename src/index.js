@@ -43,11 +43,11 @@ function breedColorChange (event) {
     event.target.style.color = "green";
 }
 
-let breedMenu = document.getElementById("breed-dropdown");
-breedMenu.addEventListener("change", handleChange);
+document.querySelector("#breed-dropdown").addEventListener("change", handleChange);
 
-function handleChange() {
-    filter(allBreeds, 0, "a")
+
+function handleChange(event) {
+    console.log(event);
 }
 
 function filter(names, index, letter) {
@@ -56,3 +56,4 @@ function filter(names, index, letter) {
     });
     return filteredNames;
 }
+
