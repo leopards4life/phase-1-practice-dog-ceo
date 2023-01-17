@@ -43,17 +43,16 @@ function breedColorChange (event) {
     event.target.style.color = "green";
 }
 
-document.querySelector("#breed-dropdown").addEventListener("change", handleChange);
+const breedDropdown = document.querySelector("#breed-dropdown");
+console.log(breedDropdown);
+// breedDropdown.addEventListener("change", filterBreeds);
 
 
-function handleChange(event) {
-    console.log(event);
-}
-
-function filter(names, index, letter) {
-    var filteredNames = names.filter(function(word) {
-       return word.charAt(index) === letter;
-    });
-    return filteredNames;
-}
-
+function filterBreeds(event) {
+    let allBreeds = document.querySelectorAll("#li");
+    let breedList = [...allBreeds];
+    let filteredOutBreeds = breedList.filter(dog => dog.firstChild.innerText.charAt(0) !== event.target.value)
+    for (breed of filteredOutBreeds) {
+        breed.style.display = "none";
+    }
+};
